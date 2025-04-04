@@ -1,0 +1,48 @@
+name: pytorch-gpu-2.3.1-cuda-12.1
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+dependencies:
+  - pytorch
+  - torchvision
+  - torchaudio
+  - pytorch-cuda=12.1
+  - python=3
+  - numpy
+  - scipy
+  - pandas
+  - natsort
+  - scikit-learn
+  - networkx
+  - beautifulsoup4
+  - polars
+  - opencv
+  - geopandas
+  - sympy
+  - mpmath
+  - gmp
+  - matplotlib
+  - plotly
+  - bokeh
+  - seaborn
+  - ipython
+  - ipywidgets=8
+  - ipykernel
+  - voila
+  - tqdm
+  - zstandard
+  - pyarrow
+  - feather-format
+  - pyyaml
+  - yaml
+  - openpyxl
+  - xlrd
+  - dask
+  - meson
+  - gemmi
+  - ffmpeg
+  - openssh
+  - rsync
+prefix: /packages/envs/pytorch-gpu-2.3.1-cuda-12.1
