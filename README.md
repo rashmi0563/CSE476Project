@@ -2,6 +2,8 @@
 1. Create Account for Huggingface
 2. Grant Access for llama-3.2-3b (takes like 10min to get access)
 ![Access](./img/access.png)
+    you can check request status(setting -> Gated Repo)
+![Status](./img/status.png)
 3. Get HuggingFace Access Token (Setting -> Get Access Token)
 4. Copy and paste your Access Token to config.py
 5. run main.py and test it
