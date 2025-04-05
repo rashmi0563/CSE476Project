@@ -2,11 +2,11 @@
 
 ## Following bash commands should be executed in the project directory
 
-### 1. cp ./cse476.yaml ~/cse476.yaml
-### 2. cd ~
-### 3. module load mamba/latest
-### 4. mamba env create -n cse476 --file ~/cse476.yaml
-### 5. source activate cse476
+### 1. `cp ./cse476.yaml ~/cse476.yaml`
+### 2. `cd ~`
+### 3. `module load mamba/latest`
+### 4. `mamba env create -n cse476 --file ~/cse476.yaml`
+### 5. `source activate cse476`
 
 # Hugging Face transformers setting
 ### 1. Create an Account on Hugging Face
