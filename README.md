@@ -1,6 +1,6 @@
 # python environment setting
 
-## following bash commands should be executed in the project file
+## Following bash commands should be executed in the project directory
 
 ### 1. cp ./cse476.yaml ~/cse476.yaml
 ### 2. cd ~
@@ -8,25 +8,24 @@
 ### 4. mamba env create -n cse476 --file ~/cse476.yaml
 ### 5. source activate cse476
 
-# huggingface transformers setting
-### 1. Create Account for Huggingface
-### 2. Grant Access for llama-3.2-3b (takes like 10min to get access)
+# Hugging Face transformers setting
+### 1. Create an Account on Hugging Face
+### 2. Grant Access to llama-3.2-3b (takes about 10 minutes to get access)
 ![Access](./img/access.png)
-    you can check request status(setting -> Gated Repo)
+    You can check the request status (Settings -> Gated Repo)
 ![Status](./img/status.png)
-### 3. Get HuggingFace Access Token (Setting -> Get Access Token)
-### 4. copy config_temp.py to config.py (cp ./Backend/config_temp.py ./Backend/config.py)
-### 4. Copy and paste your Access Token to config.py
+### 3. Get a Hugging Face Access Token (Settings -> Get Access Token)
+### 4. Copy `config_temp.py` to `config.py` (cp ./Backend/config_temp.py ./Backend/config.py)
+### 5. Copy and paste your Access Token into `config.py`
 
-# Dependency library install
-### 1. Once you successfully open python environment you will have (cse476) in your terminal
+# Dependency library installation
+### 1. Once you successfully open the Python environment, you will see `(cse476)` in your terminal.
 ![Access](./img/env.png)
-### 2. Now you can download dependency library to run the code.
-### 3. pip install -r requirements.txt
-### 4. Once download is completed, you are ready to run code
+### 2. Now you can download the dependency libraries to run the code.
+### 3. Run `pip install -r requirements.txt`
+### 4. Once the download is completed, you are ready to run the code.
 
 # Test LLM API
-### 1. open 2 terminals
-### 2. python main.py (1st terminal) (this is llm api server)
-### 3. python test_llm.py (2nd terminal) (this is client)
-
+### 1. Open two terminals.
+### 2. Run `python main.py` in the first terminal (this is the LLM API server).
+### 3. Run `python test_llm.py` in the second terminal (this is the client).
