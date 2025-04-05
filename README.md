@@ -17,7 +17,6 @@
 ### 3. Get HuggingFace Access Token (Setting -> Get Access Token)
 ### 4. copy config_temp.py to config.py (cp ./Backend/config_temp.py ./Backend/config.py)
 ### 4. Copy and paste your Access Token to config.py
-### 5. run main.py and test it
 
 # Dependency library install
 ### 1. Once you successfully open python environment you will have (cse476) in your terminal
