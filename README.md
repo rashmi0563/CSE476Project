@@ -27,5 +27,5 @@
 
 # Test LLM API
 ### 1. Open two terminals.
-### 2. Run `python main.py` in the first terminal (this is the LLM API server).
+### 2. Run `uvicorn main:app --host 0.0.0.0 --port 8000` in Backend folder, in the first terminal (this is the LLM API server).
 ### 3. Run `python test_llm.py` in the second terminal (this is the client).
