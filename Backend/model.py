@@ -1,4 +1,4 @@
-import Backend.config as config
+import config as config
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
 class Load_model():
