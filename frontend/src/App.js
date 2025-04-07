@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
+import './App.css';
 
 function App() {
+  const [messages, setMessages] = useState([]);
   const [question, setQuestion] = useState('');
-  const [response, setResponse] = useState('');
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!question.trim()) return;
+
+    const newMessages = [...messages, { type: 'user', text: question }];
+    setMessages(newMessages);
+    setQuestion('');
     setLoading(true);
-    setResponse(''); // clear previous response
 
     try {
       const res = await fetch('http://localhost:8000/generate', {
@@ -19,47 +24,36 @@ function App() {
         body: JSON.stringify({ prompt: question })
       });
 
-      if(res.ok)
-      {
+      if (res.ok) {
         const data = await res.json();
-        setResponse(data.response);
-      }
-      else
-      {
-        setResponse('Failed to fetch response from the server.');
+        setMessages([...newMessages, { type: 'bot', text: data.response }]);
+      } else {
+        setMessages([...newMessages, { type: 'bot', text: 'Failed to fetch response from the server.' }]);
       }
     } catch (error) {
       console.error('Error:', error);
-      setResponse('An error occurred. Please try again.');
+      setMessages([...newMessages, { type: 'bot', text: 'An error occurred. Please try again.' }]);
     }
     setLoading(false);
   };
 
   return (
-    <div style={{ padding: '20px' }}>
-      <h1>Ask a Question</h1>
-      <form onSubmit={handleSubmit}>
+    <div className="chat-container">
+      <div className="chat-window">
+        {messages.map((msg, index) => (
+          <div key={index} className={`message ${msg.type}`}>{msg.text}</div>
+        ))}
+      </div>
+      <form className="chat-input" onSubmit={handleSubmit}>
         <textarea
           value={question}
           onChange={(e) => setQuestion(e.target.value)}
-          rows={4}
-          placeholder="Enter your question here..."
-          style={{ width: '100%', padding: '10px', fontSize: '16px' }}
+          rows={2}
+          placeholder="Type your message..."
+          disabled={loading}
         />
-        <br />
-        <button type="submit" 
-                disabled={loading} 
-                style={{ marginTop: '10px', padding: '10px 20px', fontSize: '16px' }}
-        >
-          {loading ? 'Submitting...' : 'Submit'}
-        </button>
+        <button type="submit" disabled={loading}>{loading ? 'Sending...' : 'Send'}</button>
       </form>
-      {response && (
-        <div style={{ marginTop: '20px', backgroundColor: '#f9f9f9', padding: '15px', border: '1px solid #ccc' }}>
-          <h2>Response:</h2>
-          <p>{response}</p>
-        </div>
-      )}
     </div>
   );
 }
