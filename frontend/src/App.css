@@ -65,11 +65,13 @@
 .message.user {
   background-color: #d1e7dd;
   align-self: flex-end;
+  text-align: right;
 }
 
 .message.bot {
   background-color: #f8d7da;
   align-self: flex-start;
+  text-align: left;
 }
 
 .chat-input {
