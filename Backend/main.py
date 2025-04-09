@@ -28,3 +28,7 @@ def generate_text(req: PromptRequest):
         outputs = model.generate(inputs, max_new_tokens=100)
     generated_text = tokenizer.decode(outputs[0], skip_special_tokens=True)
     return {"response" : generated_text}
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
