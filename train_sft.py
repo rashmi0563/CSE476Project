@@ -53,10 +53,8 @@ tokenizer.padding_side = "right"
 dataset = load_dataset(dataset_path, split="train")
 
 def formatting_prompts_func(batch):
-    # 단일 샘플일 경우 값을 리스트로 감싸서 처리
     if not isinstance(batch['instruction'], (list, tuple)):
         batch = {k: [v] for k, v in batch.items()}
-    # 'text' 필드가 있으면 그대로 사용
     if 'text' in batch:
         texts = batch['text']
         if not isinstance(texts, (list, tuple)):
@@ -65,7 +63,8 @@ def formatting_prompts_func(batch):
     else:
         output_texts = []
         for instruction, input_text, output_text in zip(batch['instruction'], batch['input'], batch['output']):
-            text = f"### Instruction:\n{instruction}\n\n"
+            text = "Below is an instruction that describes a task. Write a response that appropriately completes the request.\n\n"
+            text += f"### Instruction:\n{instruction}\n\n"
             if input_text:
                 text += f"### Input:\n{input_text}\n\n"
             text += f"### Response:\n{output_text}"
@@ -93,13 +92,10 @@ lora_config = LoraConfig(
 )
 
 
-model = get_peft_model(model, lora_config)
-model.print_trainable_parameters()
-
 training_arguments = TrainingArguments(
     output_dir = sft_output_dir,
-    num_train_epochs=1,
-    per_device_train_batch_size=4,
+    num_train_epochs=5,
+    per_device_train_batch_size=8,
     gradient_accumulation_steps=4,
     optim="paged_adamw_32bit",
     save_steps=500,

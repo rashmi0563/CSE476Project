@@ -7,3 +7,4 @@ accelerate
 peft
 bitsandbytes
 trl
+tensorboard

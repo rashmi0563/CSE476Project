@@ -23,10 +23,20 @@ class PromptRequest(BaseModel):
 
 @app.post("/generate")
 def generate_text(req: PromptRequest):
-    inputs = tokenizer(req.prompt, return_tensors="pt").input_ids.cuda()
+    q = req.prompt
+    prompt = "Below is an instruction that describes a task. Write a response that appropriately completes the request.\n\n"
+    prompt += f"### Instruction:\n{q}\n\n### Response:\n"
+    inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
+    #input_ids = inputs["input_ids"]
+    #attention_mask = inputs["attention_mask"]
     with torch.no_grad():
-        outputs = model.generate(inputs, max_new_tokens=100)
-    generated_text = tokenizer.decode(outputs[0], skip_special_tokens=True)
+        outputs = model.generate(
+            **inputs, 
+            max_new_tokens=128,
+            pad_token_id=tokenizer.eos_token_id
+            )
+    #output_token_ids = outputs[0][input_ids.shape[1]:]
+    generated_text = tokenizer.decode(outputs[0], skip_special_tokens=True).split("### Response:")[-1].strip()
     return {"response" : generated_text}
 
 if __name__ == "__main__":
