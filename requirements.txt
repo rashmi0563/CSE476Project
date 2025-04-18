@@ -1,2 +1,8 @@
 fastapi
 pydantic
+transformers
+datasets
+accelerate
+peft
+bitsandbytes
+trl
