@@ -1,4 +1,4 @@
-import config
+import Backend.config as config
 import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
