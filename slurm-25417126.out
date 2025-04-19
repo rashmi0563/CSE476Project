@@ -1,0 +1,106 @@
+
+=====================================================================
+This module is only for creating or activating Python environments:
+$ mamba create -n myenv -c conda-forge python=3 <package_name>
+$ source activate myenv
+
+Only run "pip install" after activating an environment.
+Running pip without activating an environment is known to cause issues.
+
+To list available environments:
+$ mamba info --envs
+
+Other uses are not tested. More info: https://links.asu.edu/solpy
+=====================================================================
+
+  
+====== Base Model Loading : meta-llama/Llama-3.2-3B ============
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:03<00:03,  3.95s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:05<00:00,  2.37s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:05<00:00,  2.61s/it]
+==== previous adapter load complete === : ./llama-3.2-3B-sft-dolly
+--- FLAN Dataset Processing start (FlanDatasetProcessor) ---
+--- Total 66 categories processing ---
+FLAN 카테고리 처리 중:   0%|          | 0/66 [00:00<?, ?it/s]FLAN 카테고리 처리 중:   2%|▏         | 1/66 [00:06<07:31,  6.95s/it]FLAN 카테고리 처리 중:   3%|▎         | 2/66 [00:08<03:44,  3.50s/it]FLAN 카테고리 처리 중:   5%|▍         | 3/66 [00:09<02:28,  2.35s/it]FLAN 카테고리 처리 중:   6%|▌         | 4/66 [00:09<01:42,  1.65s/it]FLAN 카테고리 처리 중:   8%|▊         | 5/66 [00:10<01:17,  1.27s/it]FLAN 카테고리 처리 중:   9%|▉         | 6/66 [00:10<01:02,  1.05s/it]FLAN 카테고리 처리 중:  11%|█         | 7/66 [00:11<00:53,  1.11it/s]FLAN 카테고리 처리 중:  12%|█▏        | 8/66 [00:11<00:46,  1.26it/s]FLAN 카테고리 처리 중:  14%|█▎        | 9/66 [00:12<00:48,  1.18it/s]FLAN 카테고리 처리 중:  15%|█▌        | 10/66 [00:13<00:43,  1.28it/s]FLAN 카테고리 처리 중:  17%|█▋        | 11/66 [00:14<00:39,  1.40it/s]FLAN 카테고리 처리 중:  18%|█▊        | 12/66 [00:14<00:36,  1.49it/s]FLAN 카테고리 처리 중:  20%|█▉        | 13/66 [00:15<00:33,  1.57it/s]FLAN 카테고리 처리 중:  21%|██        | 14/66 [00:16<00:40,  1.28it/s]FLAN 카테고리 처리 중:  23%|██▎       | 15/66 [00:19<01:08,  1.34s/it]FLAN 카테고리 처리 중:  24%|██▍       | 16/66 [00:19<00:55,  1.11s/it]FLAN 카테고리 처리 중:  26%|██▌       | 17/66 [00:20<00:46,  1.05it/s]FLAN 카테고리 처리 중:  27%|██▋       | 18/66 [00:20<00:41,  1.17it/s]FLAN 카테고리 처리 중:  29%|██▉       | 19/66 [00:21<00:36,  1.30it/s]FLAN 카테고리 처리 중:  30%|███       | 20/66 [00:21<00:32,  1.40it/s]FLAN 카테고리 처리 중:  32%|███▏      | 21/66 [00:22<00:30,  1.48it/s]FLAN 카테고리 처리 중:  33%|███▎      | 22/66 [00:23<00:29,  1.48it/s]FLAN 카테고리 처리 중:  35%|███▍      | 23/66 [00:23<00:27,  1.54it/s]FLAN 카테고리 처리 중:  36%|███▋      | 24/66 [00:24<00:26,  1.60it/s]FLAN 카테고리 처리 중:  38%|███▊      | 25/66 [00:25<00:25,  1.59it/s]FLAN 카테고리 처리 중:  39%|███▉      | 26/66 [00:26<00:30,  1.31it/s]FLAN 카테고리 처리 중:  41%|████      | 27/66 [00:26<00:27,  1.40it/s]FLAN 카테고리 처리 중:  42%|████▏     | 28/66 [00:27<00:25,  1.47it/s]FLAN 카테고리 처리 중:  44%|████▍     | 29/66 [00:27<00:23,  1.55it/s]FLAN 카테고리 처리 중:  45%|████▌     | 30/66 [00:28<00:22,  1.60it/s]FLAN 카테고리 처리 중:  47%|████▋     | 31/66 [00:29<00:22,  1.57it/s]FLAN 카테고리 처리 중:  48%|████▊     | 32/66 [00:29<00:22,  1.54it/s]FLAN 카테고리 처리 중:  50%|█████     | 33/66 [00:30<00:20,  1.58it/s]FLAN 카테고리 처리 중:  52%|█████▏    | 34/66 [00:30<00:19,  1.62it/s]FLAN 카테고리 처리 중:  53%|█████▎    | 35/66 [00:31<00:18,  1.66it/s]FLAN 카테고리 처리 중:  55%|█████▍    | 36/66 [00:32<00:17,  1.69it/s]FLAN 카테고리 처리 중:  56%|█████▌    | 37/66 [00:32<00:16,  1.72it/s]FLAN 카테고리 처리 중:  58%|█████▊    | 38/66 [00:38<00:58,  2.09s/it]FLAN 카테고리 처리 중:  59%|█████▉    | 39/66 [00:38<00:44,  1.64s/it]FLAN 카테고리 처리 중:  61%|██████    | 40/66 [00:39<00:34,  1.32s/it]FLAN 카테고리 처리 중:  62%|██████▏   | 41/66 [00:40<00:28,  1.15s/it]FLAN 카테고리 처리 중:  64%|██████▎   | 42/66 [00:40<00:23,  1.01it/s]FLAN 카테고리 처리 중:  65%|██████▌   | 43/66 [00:42<00:25,  1.12s/it]FLAN 카테고리 처리 중:  67%|██████▋   | 44/66 [00:42<00:21,  1.04it/s]FLAN 카테고리 처리 중:  68%|██████▊   | 45/66 [00:43<00:17,  1.18it/s]FLAN 카테고리 처리 중:  70%|██████▉   | 46/66 [00:43<00:15,  1.31it/s]FLAN 카테고리 처리 중:  71%|███████   | 47/66 [00:44<00:13,  1.39it/s]FLAN 카테고리 처리 중:  73%|███████▎  | 48/66 [00:48<00:31,  1.77s/it]FLAN 카테고리 처리 중:  74%|███████▍  | 49/66 [00:49<00:24,  1.41s/it]FLAN 카테고리 처리 중:  76%|███████▌  | 50/66 [00:49<00:18,  1.16s/it]FLAN 카테고리 처리 중:  77%|███████▋  | 51/66 [00:50<00:15,  1.00s/it]FLAN 카테고리 처리 중:  79%|███████▉  | 52/66 [00:51<00:12,  1.13it/s]FLAN 카테고리 처리 중:  80%|████████  | 53/66 [00:59<00:42,  3.23s/it]FLAN 카테고리 처리 중:  82%|████████▏ | 54/66 [01:05<00:48,  4.05s/it]FLAN 카테고리 처리 중:  83%|████████▎ | 55/66 [01:06<00:33,  3.01s/it]FLAN 카테고리 처리 중:  85%|████████▍ | 56/66 [01:07<00:22,  2.29s/it]FLAN 카테고리 처리 중:  86%|████████▋ | 57/66 [01:07<00:16,  1.79s/it]FLAN 카테고리 처리 중:  88%|████████▊ | 58/66 [01:13<00:24,  3.08s/it]FLAN 카테고리 처리 중:  89%|████████▉ | 59/66 [01:14<00:17,  2.46s/it]FLAN 카테고리 처리 중:  91%|█████████ | 60/66 [01:19<00:18,  3.15s/it]FLAN 카테고리 처리 중:  92%|█████████▏| 61/66 [01:20<00:11,  2.38s/it]FLAN 카테고리 처리 중:  94%|█████████▍| 62/66 [01:20<00:07,  1.83s/it]FLAN 카테고리 처리 중:  95%|█████████▌| 63/66 [01:21<00:04,  1.47s/it]FLAN 카테고리 처리 중:  97%|█████████▋| 64/66 [01:21<00:02,  1.20s/it]FLAN 카테고리 처리 중:  98%|█████████▊| 65/66 [01:25<00:02,  2.05s/it]FLAN 카테고리 처리 중: 100%|██████████| 66/66 [01:30<00:00,  2.85s/it]FLAN 카테고리 처리 중: 100%|██████████| 66/66 [01:30<00:00,  1.37s/it]
+=====Error multi_news_10templates : BuilderConfig 'multi_news_10templates' not found. Available: ['default'] =======
+=====Error wmt16_translate_ruen_10templates : BuilderConfig 'wmt16_translate_ruen_10templates' not found. Available: ['default'] =======
+=====Error stsb_10templates : BuilderConfig 'stsb_10templates' not found. Available: ['default'] =======
+=====Error true_case_10templates : BuilderConfig 'true_case_10templates' not found. Available: ['default'] =======
+=====Error wmt16_translate_csen_10templates : BuilderConfig 'wmt16_translate_csen_10templates' not found. Available: ['default'] =======
+=====Error fix_punct_10templates : BuilderConfig 'fix_punct_10templates' not found. Available: ['default'] =======
+=====Error imdb_reviews_10templates : BuilderConfig 'imdb_reviews_10templates' not found. Available: ['default'] =======
+=====Error sentiment140_10templates : BuilderConfig 'sentiment140_10templates' not found. Available: ['default'] =======
+=====Error wic_10templates : BuilderConfig 'wic_10templates' not found. Available: ['default'] =======
+=====Error wsc_10templates : BuilderConfig 'wsc_10templates' not found. Available: ['default'] =======
+=====Error sst2_10templates : BuilderConfig 'sst2_10templates' not found. Available: ['default'] =======
+=====Error glue_qqp_10templates : BuilderConfig 'glue_qqp_10templates' not found. Available: ['default'] =======
+=====Error trec_10templates : BuilderConfig 'trec_10templates' not found. Available: ['default'] =======
+=====Error e2e_nlg_10templates : BuilderConfig 'e2e_nlg_10templates' not found. Available: ['default'] =======
+=====Error wnli_10templates : BuilderConfig 'wnli_10templates' not found. Available: ['default'] =======
+=====Error anli_r2_10templates : BuilderConfig 'anli_r2_10templates' not found. Available: ['default'] =======
+=====Error mnli_matched_10templates : BuilderConfig 'mnli_matched_10templates' not found. Available: ['default'] =======
+=====Error story_cloze_10templates : BuilderConfig 'story_cloze_10templates' not found. Available: ['default'] =======
+=====Error drop_10templates : BuilderConfig 'drop_10templates' not found. Available: ['default'] =======
+=====Error copa_10templates : BuilderConfig 'copa_10templates' not found. Available: ['default'] =======
+=====Error aeslc_10templates : BuilderConfig 'aeslc_10templates' not found. Available: ['default'] =======
+=====Error rte_10templates : BuilderConfig 'rte_10templates' not found. Available: ['default'] =======
+=====Error cb_10templates : BuilderConfig 'cb_10templates' not found. Available: ['default'] =======
+=====Error snli_10templates : BuilderConfig 'snli_10templates' not found. Available: ['default'] =======
+=====Error multirc_10templates : BuilderConfig 'multirc_10templates' not found. Available: ['default'] =======
+=====Error glue_mrpc_10templates : BuilderConfig 'glue_mrpc_10templates' not found. Available: ['default'] =======
+=====Error wmt16_translate_deen_10templates : BuilderConfig 'wmt16_translate_deen_10templates' not found. Available: ['default'] =======
+=====Error ag_news_subset_10templates : BuilderConfig 'ag_news_subset_10templates' not found. Available: ['default'] =======
+=====Error wmt16_translate_tren_10templates : BuilderConfig 'wmt16_translate_tren_10templates' not found. Available: ['default'] =======
+=====Error opinion_abstracts_idebate_10templates : BuilderConfig 'opinion_abstracts_idebate_10templates' not found. Available: ['default'] =======
+=====Error wmt16_translate_fien_10templates : BuilderConfig 'wmt16_translate_fien_10templates' not found. Available: ['default'] =======
+=====Error mnli_mismatched_10templates : BuilderConfig 'mnli_mismatched_10templates' not found. Available: ['default'] =======
+=====Error trivia_qa_10templates : BuilderConfig 'trivia_qa_10templates' not found. Available: ['default'] =======
+=====Error web_nlg_en_10templates : BuilderConfig 'web_nlg_en_10templates' not found. Available: ['default'] =======
+=====Error record_10templates : BuilderConfig 'record_10templates' not found. Available: ['default'] =======
+=====Error cola_10templates : BuilderConfig 'cola_10templates' not found. Available: ['default'] =======
+=====Error arc_challenge_10templates : BuilderConfig 'arc_challenge_10templates' not found. Available: ['default'] =======
+=====Error arc_easy_10templates : BuilderConfig 'arc_easy_10templates' not found. Available: ['default'] =======
+=====Error hellaswag_10templates : BuilderConfig 'hellaswag_10templates' not found. Available: ['default'] =======
+=====Error paws_wiki_10templates : BuilderConfig 'paws_wiki_10templates' not found. Available: ['default'] =======
+=====Error wmt14_enfr_10templates : BuilderConfig 'wmt14_enfr_10templates' not found. Available: ['default'] =======
+=====Error quac_10templates : BuilderConfig 'quac_10templates' not found. Available: ['default'] =======
+=====Error anli_r3_10templates : BuilderConfig 'anli_r3_10templates' not found. Available: ['default'] =======
+=====Error squad_v2_10templates : BuilderConfig 'squad_v2_10templates' not found. Available: ['default'] =======
+=====Error para_crawl_enes_10templates : BuilderConfig 'para_crawl_enes_10templates' not found. Available: ['default'] =======
+=====Error bool_q_10templates : BuilderConfig 'bool_q_10templates' not found. Available: ['default'] =======
+=====Error cnn_dailymail_10templates : BuilderConfig 'cnn_dailymail_10templates' not found. Available: ['default'] =======
+=====Error coqa_10templates : BuilderConfig 'coqa_10templates' not found. Available: ['default'] =======
+=====Error samsum_10templates : BuilderConfig 'samsum_10templates' not found. Available: ['default'] =======
+=====Error definite_pronoun_resolution_10templates : BuilderConfig 'definite_pronoun_resolution_10templates' not found. Available: ['default'] =======
+=====Error openbookqa_10templates : BuilderConfig 'openbookqa_10templates' not found. Available: ['default'] =======
+=====Error qnli_10templates : BuilderConfig 'qnli_10templates' not found. Available: ['default'] =======
+=====Error opinion_abstracts_rotten_tomatoes_10templates : BuilderConfig 'opinion_abstracts_rotten_tomatoes_10templates' not found. Available: ['default'] =======
+=====Error common_gen_10templates : BuilderConfig 'common_gen_10templates' not found. Available: ['default'] =======
+=====Error gigaword_10templates : BuilderConfig 'gigaword_10templates' not found. Available: ['default'] =======
+=====Error cosmos_qa_10templates : BuilderConfig 'cosmos_qa_10templates' not found. Available: ['default'] =======
+=====Error math_dataset_10templates : BuilderConfig 'math_dataset_10templates' not found. Available: ['default'] =======
+=====Error wmt16_translate_roen_10templates : BuilderConfig 'wmt16_translate_roen_10templates' not found. Available: ['default'] =======
+=====Error squad_v1_10templates : BuilderConfig 'squad_v1_10templates' not found. Available: ['default'] =======
+=====Error dart_10templates : BuilderConfig 'dart_10templates' not found. Available: ['default'] =======
+=====Error natural_questions_10templates : BuilderConfig 'natural_questions_10templates' not found. Available: ['default'] =======
+=====Error anli_r1_10templates : BuilderConfig 'anli_r1_10templates' not found. Available: ['default'] =======
+=====Error wiki_lingua_english_en_10templates : BuilderConfig 'wiki_lingua_english_en_10templates' not found. Available: ['default'] =======
+=====Error piqa_10templates : BuilderConfig 'piqa_10templates' not found. Available: ['default'] =======
+=====Error yelp_polarity_reviews_10templates : BuilderConfig 'yelp_polarity_reviews_10templates' not found. Available: ['default'] =======
+=====Error word_segment_10templates : BuilderConfig 'word_segment_10templates' not found. Available: ['default'] =======
+Traceback (most recent call last):
+  File "/home/jpark284/CSE476/train_sft_general.py", line 66, in <module>
+    final_dataset = flan_processor.load_and_process()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jpark284/CSE476/flan_processor.py", line 68, in load_and_process
+    raise RuntimeError("No FLAN Dataset to process, check category name or dataset")
+RuntimeError: No FLAN Dataset to process, check category name or dataset
+Traceback (most recent call last):
+  File "/home/jpark284/.conda/envs/cse476/bin/accelerate", line 8, in <module>
+    sys.exit(main())
+             ^^^^^^
+  File "/home/jpark284/.conda/envs/cse476/lib/python3.12/site-packages/accelerate/commands/accelerate_cli.py", line 50, in main
+    args.func(args)
+  File "/home/jpark284/.conda/envs/cse476/lib/python3.12/site-packages/accelerate/commands/launch.py", line 1213, in launch_command
+    simple_launcher(args)
+  File "/home/jpark284/.conda/envs/cse476/lib/python3.12/site-packages/accelerate/commands/launch.py", line 795, in simple_launcher
+    raise subprocess.CalledProcessError(returncode=process.returncode, cmd=cmd)
+subprocess.CalledProcessError: Command '['/home/jpark284/.conda/envs/cse476/bin/python3.12', 'train_sft_general.py']' returned non-zero exit status 1.

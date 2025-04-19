@@ -14,21 +14,26 @@ from peft import LoraConfig, PeftModel, get_peft_model
 from trl import SFTTrainer
 import config
 import LoRA_config as lora
+from flan_processor import FlanDatasetProcessor
 
 #=========model load==================
 first_train = False #set to True if you train model for first time(means you got no adapter)
 base_model_name = config.MODEL
 
-prev_adapter_path = config.Alpaca_SFT_OUTPUT_DIR
-next_adapter_path = config.DOLLY_SFT_OUTPUT_DIR
-dataset_path = config.DOLLY_Dataset_path
+prev_adapter_path = config.DOLLY_SFT_OUTPUT_DIR
+next_adapter_path = config.FLAN_SFT_OUTPUT_DIR
+dataset_path = config.FLAN_Dataset_path
 
 hf_token = config.HUGGINGFACE_TOKEN
 
 bnb_config = lora.bnb_config # QLoRa Setting
 lora_config = lora.lora_config #LoRA Setting
 
+flan_categories = config.flan_categories
+samples_per_category = 1000 #for flan
+
 #Llama3.2-3b model load
+print(f"====== Base Model Loading : {base_model_name} ============")
 base_model = AutoModelForCausalLM.from_pretrained(
     base_model_name,
     quantization_config = bnb_config,
@@ -53,7 +58,12 @@ if tokenizer.pad_token is None:
 tokenizer.padding_side = "right"
 
 #======= dataset load and formatting=========
-dataset = load_dataset(dataset_path, split="train")
+#dataset = load_dataset(dataset_path, split="train")
+flan_processor = FlanDatasetProcessor(
+    tokenizer=tokenizer,
+    hf_token=hf_token,
+)
+final_dataset = flan_processor.load_and_process()
 
 def formatting_prompts_func_dolly(batch):
 
@@ -80,12 +90,12 @@ def formatting_prompts_func_dolly(batch):
 
 training_arguments = TrainingArguments(
     output_dir = next_adapter_path,
-    num_train_epochs=3,
-    per_device_train_batch_size=8,
-    gradient_accumulation_steps=4,
+    num_train_epochs=1,
+    per_device_train_batch_size=4,
+    gradient_accumulation_steps=8,
     optim="paged_adamw_32bit",
-    save_steps=500,
-    logging_steps=10,
+    save_steps=1000,
+    logging_steps=50,
     learning_rate=1e-4,
     weight_decay=0.001,
     fp16=False,
@@ -103,8 +113,7 @@ model.print_trainable_parameters()
 
 trainer = SFTTrainer(
     model=model,
-    train_dataset=dataset,
-    formatting_func=formatting_prompts_func_dolly,
+    train_dataset=final_dataset,
     peft_config=None if first_train else lora_config,
     processing_class=tokenizer,
     args=training_arguments,
@@ -117,7 +126,7 @@ print("=== Additional Train Complete ===")
 
 trainer.save_model(next_adapter_path)
 tokenizer.save_pretrained(next_adapter_path)
-print(f"=== Save DOlly SFT-Model and Tokenizer Complete ===")
+print(f"=== Save FLAN SFT-Model and Tokenizer Complete ===")
 
 del model
 del trainer
