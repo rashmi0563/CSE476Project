@@ -14,5 +14,6 @@
 
 module load mamba/latest
 source activate cse476
+cd ~/CSE476
 
-python train_sft.py
+accelerate launch train_sft_dolly.py
