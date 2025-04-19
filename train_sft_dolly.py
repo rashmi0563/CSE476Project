@@ -41,7 +41,7 @@ base_model = AutoModelForCausalLM.from_pretrained(
 base_model.config.use_cache = False
 base_model.config.pretraining_tp = 1
 
-model = PeftModel.from_pretrained(base_model, first_adapter_path)
+model = PeftModel.from_pretrained(base_model, first_adapter_path, is_trainable=True)
 print(f"==== previous adapter load complete === : {first_adapter_path}")
 
 tokenizer = AutoTokenizer.from_pretrained(
