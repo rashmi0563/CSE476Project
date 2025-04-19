@@ -8,3 +8,6 @@ peft
 bitsandbytes
 trl
 tensorboard
+evaluate
+rouge-score
+sacrebleu

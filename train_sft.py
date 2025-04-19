@@ -12,7 +12,7 @@ from transformers import (
 
 from peft import LoraConfig, PeftModel, get_peft_model
 from trl import SFTTrainer
-import Backend.config as config
+import config
 
 #=========model load==================
 base_model_name = config.MODEL

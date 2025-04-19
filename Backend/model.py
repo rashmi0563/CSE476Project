@@ -3,9 +3,9 @@ import torch
 from transformers import AutoTokenizer, AutoModelForCausalLM, BitsAndBytesConfig
 from peft import PeftModel
 class Load_model():
-    def __init__(self):
+    def __init__(self,adapter_path):
         self.base_model_name = config.MODEL
-        self.adapter_path = config.SFT_OUTPUT_DIR
+        self.adapter_path = adapter_path
         self.token = config.HUGGINGFACE_TOKEN
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 

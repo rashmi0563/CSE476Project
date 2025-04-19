@@ -2,3 +2,4 @@ Backend/__pycache__/
 Backend/config.py
 llama-3.2-3B-sft
 /llama-*/
+config.py

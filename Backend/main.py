@@ -2,6 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from model import Load_model
+import config
 import torch
 
 app = FastAPI()
@@ -13,8 +14,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-model_loader = Load_model()
+adapter = config.DOLLY_SFT_OUTPUT_DIR
+model_loader = Load_model(adapter)
 model, tokenizer = model_loader.get()
 
 

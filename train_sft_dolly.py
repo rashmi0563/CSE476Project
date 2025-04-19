@@ -12,22 +12,21 @@ from transformers import (
 
 from peft import LoraConfig, PeftModel, get_peft_model
 from trl import SFTTrainer
-import Backend.config as config
+import config
+import LoRA_config as lora
 
 #=========model load==================
+first_train = False #set to True if you train model for first time(means you got no adapter)
 base_model_name = config.MODEL
-first_adapter_path = config.SFT_OUTPUT_DIR
-dolly_adapter_path = config.DOLLY_SFT_OUTPUT_DIR
-hf_token = config.HUGGINGFACE_TOKEN
-dataset_path = "databricks/databricks-dolly-15k"
 
-# QLoRa Setting
-bnb_config = BitsAndBytesConfig(
-    load_in_4bit=True,
-    bnb_4bit_quant_type="nf4",
-    bnb_4bit_compute_dtype=torch.bfloat16,
-    bnb_4bit_use_double_quant=False,
-)
+prev_adapter_path = config.Alpaca_SFT_OUTPUT_DIR
+next_adapter_path = config.DOLLY_SFT_OUTPUT_DIR
+dataset_path = config.DOLLY_Dataset_path
+
+hf_token = config.HUGGINGFACE_TOKEN
+
+bnb_config = lora.bnb_config # QLoRa Setting
+lora_config = lora.lora_config #LoRA Setting
 
 #Llama3.2-3b model load
 base_model = AutoModelForCausalLM.from_pretrained(
@@ -41,11 +40,11 @@ base_model = AutoModelForCausalLM.from_pretrained(
 base_model.config.use_cache = False
 base_model.config.pretraining_tp = 1
 
-model = PeftModel.from_pretrained(base_model, first_adapter_path, is_trainable=True)
-print(f"==== previous adapter load complete === : {first_adapter_path}")
+model = PeftModel.from_pretrained(base_model, prev_adapter_path, is_trainable=True)
+print(f"==== previous adapter load complete === : {prev_adapter_path}")
 
 tokenizer = AutoTokenizer.from_pretrained(
-    first_adapter_path,
+    prev_adapter_path,
     token=hf_token,
     trust_remote_code = True
 )
@@ -78,26 +77,9 @@ def formatting_prompts_func_dolly(batch):
 
 # ======== LoRA setting ============
 
-lora_config = LoraConfig(
-    r=16,
-    lora_alpha=32,
-    target_modules=[
-        "q_proj",
-        "k_proj",
-        "v_proj",
-        "o_proj",
-        "gate_proj",
-        "up_proj",
-        "down_proj",
-    ],
-    lora_dropout=0.05,
-    bias="none",
-    task_type="CAUSAL_LM"
-)
-
 
 training_arguments = TrainingArguments(
-    output_dir = dolly_adapter_path,
+    output_dir = next_adapter_path,
     num_train_epochs=3,
     per_device_train_batch_size=8,
     gradient_accumulation_steps=4,
@@ -123,7 +105,7 @@ trainer = SFTTrainer(
     model=model,
     train_dataset=dataset,
     formatting_func=formatting_prompts_func_dolly,
-    #peft_config=lora_config,
+    peft_config=None if first_train else lora_config,
     processing_class=tokenizer,
     args=training_arguments,
     #max_seq_length=1024,
@@ -133,8 +115,8 @@ print("=== Dolly Dataset Train Start ===")
 trainer.train()
 print("=== Additional Train Complete ===")
 
-trainer.save_model(dolly_adapter_path)
-tokenizer.save_pretrained(dolly_adapter_path)
+trainer.save_model(next_adapter_path)
+tokenizer.save_pretrained(next_adapter_path)
 print(f"=== Save DOlly SFT-Model and Tokenizer Complete ===")
 
 del model
