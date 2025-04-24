@@ -182,6 +182,12 @@ print(tokenizer.decode(outputs[0], skip_special_tokens=True))
 8. You will see a chat interface where you can test the application.
 
 ---
+### Hugging Face Repository
+
+All adapters are hosted on the Hugging Face repository:  
+[https://huggingface.co/gg-cse476/gg](https://huggingface.co/gg-cse476/gg)
+
+Visit the repository to explore and download the adapters.
 
 ## Additional Notes
 
