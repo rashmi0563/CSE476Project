@@ -19,7 +19,7 @@ from inst_DatasetLoader import inst_DatasetLoader
 #=========model load==================
 base_model_name = config.MODEL
 base_sft_output_dir = "/home/jpark284/CSE476/adapter"
-new_sft_output_dir = "sft_a_d"
+new_sft_output_dir = "sft_a_d1"
 sft_output_dir = os.path.join(base_sft_output_dir, new_sft_output_dir)
 os.makedirs(sft_output_dir, exist_ok=True)
 # Huggingface token

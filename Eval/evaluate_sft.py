@@ -1,10 +1,11 @@
 from datasets import Dataset
-from transformers import AutoModelForCausalLM, AutoTokenizer, pipeline
+from transformers import AutoModelForCausalLM, AutoTokenizer
 from evaluate import load
 import numpy as np
 import json
 from Backend import config
 from Backend.model import Load_model
+import torch
 
 # === Step 1: Evaluation questions ===
 eval_questions = [
@@ -40,13 +41,16 @@ eval_dataset = Dataset.from_dict({"instruction": eval_questions})
 
 # === Step 3: Generation Function ===
 def generate_answers(model, tokenizer, questions, max_tokens=256):
-    generator = pipeline("text-generation", model=model, tokenizer=tokenizer, device=0)
+    #generator = pipeline("text-generation", model=model, tokenizer=tokenizer, device=0)
 
     outputs = []
     for q in questions:
         prompt = f"### Instruction:\n{q}\n\n### Response:\n"
-        output = generator(prompt, max_new_tokens=max_tokens, do_sample=False, temperature=0.0)[0]["generated_text"]
-        response = output.split("### Response:\n")[-1].strip()
+        inputs = tokenizer(prompt, return_tensors="pt").to(model.device)
+        with torch.no_grad():
+            output = model.generate(**inputs, max_length=max_tokens, pad_token_id=tokenizer.eos_token_id)
+        response = tokenizer.decode(output[0], skip_special_tokens=True)
+        response = response.split("### Response:")[-1].strip()
         outputs.append(response)
     return outputs
 
@@ -78,8 +82,10 @@ def save_comparison_to_json(questions, model1_outputs, model2_outputs, filename=
 # === Step 5: Run Example ===
 if __name__ == "__main__":
     
-    model1, tokenizer1 = Load_model(config.DOLLY_SFT_OUTPUT_DIR)
-    model2, tokenizer2 = Load_model(config.A_D_SFT_OUTPUT_DIR)
+    model_loader1 = Load_model(config.DOLLY_SFT_DIR)
+    model_loader2 = Load_model(config.A_D_SFT_DIR)
+    model1, tokenizer1 = model_loader1.get()
+    model2, tokenizer2 = model_loader2.get()
     
 
     outputs_1 = generate_answers(model1, tokenizer1, eval_questions)
