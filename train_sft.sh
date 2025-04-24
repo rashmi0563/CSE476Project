@@ -16,4 +16,5 @@ module load mamba/latest
 source activate cse476
 cd ~/CSE476
 
-accelerate launch train_sft_general.py
+# 명시적으로 accelerate 설정 파일 경로 지정
+accelerate launch --config_file accelerate_config.yaml train_sft_inst.py
