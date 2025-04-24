@@ -1,7 +1,7 @@
 from datasets import load_dataset, concatenate_datasets
 import config
 
-class inst_DatasetLoader:
+class general_DatasetLoader:
     def __init__(self,tokenizer):
         self.tokenizer = tokenizer
     

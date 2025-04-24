@@ -17,17 +17,13 @@ import LoRA_config as lora
 from flan_processor import FlanDatasetProcessor
 
 #=========model load==================
-first_train = False #set to True if you train model for first time(means you got no adapter)
 base_model_name = config.MODEL
-
-prev_adapter_path = config.DOLLY_SFT_DIR
+prev_adapter_path = config.A_D_SFT_DIR
 
 base_sft_output_dir = "/home/jpark284/CSE476/adapter"
-new_sft_output_dir = "sft_a_d1"
+new_sft_output_dir = "sft_general"
 next_adapter_path = os.path.join(base_sft_output_dir, new_sft_output_dir)
 os.makedirs(next_adapter_path, exist_ok=True)
-
-dataset_path = config.FLAN_Dataset_path
 
 hf_token = config.HUGGINGFACE_TOKEN
 
@@ -69,26 +65,6 @@ flan_processor = FlanDatasetProcessor(
     hf_token=hf_token,
 )
 final_dataset = flan_processor.load_and_process()
-
-def formatting_prompts_func_dolly(batch):
-
-    instructions = batch['instruction']
-    contexts = batch['context']
-    responses = batch['response']
-    if not isinstance(instructions, (list, tuple)):
-        batch = {k: [v] for k, v in batch.items()}
-    output_texts = []
-    prompt_template_start = "Below is an instruction that describes a task. Write a response that appropriately completes the request.\n\n"
-
-    for instruction, context, response in zip(instructions, contexts, responses):
-        text = prompt_template_start
-        text += f"### Instruction:\n{instruction}\n\n"
-        if context:
-            text += f"### Input:\n{context}\n\n"
-        text += f"### Response:\n{response}"
-        output_texts.append(text + tokenizer.eos_token)
-    return output_texts
-
 
 # ======== LoRA setting ============
 
