@@ -2,3 +2,13 @@ fastapi
 pydantic
 flask
 transformers
+datasets
+accelerate
+peft
+bitsandbytes
+trl
+tensorboard
+evaluate
+rouge-score
+sacrebleu
+
