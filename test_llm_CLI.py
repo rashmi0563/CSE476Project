@@ -17,7 +17,7 @@ while True:
     try:
         response = requests.post(url, json=payload)
         if response.status_code == 200:
-            print("Response :", response.json()["response"][len(payload['prompt']):].strip())
+            print("Response :", response.json()["response"])
             print("=" * 30)
         else:
             print(f"Error occur : {response.status_code} - {response.text}")

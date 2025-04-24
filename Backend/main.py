@@ -14,7 +14,7 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-adapter = config.DOLLY_SFT_OUTPUT_DIR
+adapter = config.A_D_SFT_DIR
 model_loader = Load_model(adapter)
 model, tokenizer = model_loader.get()
 

@@ -6,7 +6,7 @@ class inst_DatasetLoader:
         self.tokenizer = tokenizer
     
     def load_alpaca(self):
-        dataset_path = "tatsu-lab/alpaca"
+        dataset_path = "yahma/alpaca-cleaned"
         dataset = load_dataset(dataset_path, split="train")
         return dataset.map(self.format_alpaca)
     

@@ -24,7 +24,6 @@ sft_output_dir = os.path.join(base_sft_output_dir, new_sft_output_dir)
 os.makedirs(sft_output_dir, exist_ok=True)
 # Huggingface token
 hf_token = config.HUGGINGFACE_TOKEN
-dataset_path = "tatsu-lab/alpaca"
 
 # QLoRa Setting
 bnb_config = lora.bnb_config

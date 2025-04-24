@@ -20,8 +20,13 @@ from flan_processor import FlanDatasetProcessor
 first_train = False #set to True if you train model for first time(means you got no adapter)
 base_model_name = config.MODEL
 
-prev_adapter_path = config.DOLLY_SFT_OUTPUT_DIR
-next_adapter_path = config.FLAN_SFT_OUTPUT_DIR
+prev_adapter_path = config.DOLLY_SFT_DIR
+
+base_sft_output_dir = "/home/jpark284/CSE476/adapter"
+new_sft_output_dir = "sft_a_d1"
+next_adapter_path = os.path.join(base_sft_output_dir, new_sft_output_dir)
+os.makedirs(next_adapter_path, exist_ok=True)
+
 dataset_path = config.FLAN_Dataset_path
 
 hf_token = config.HUGGINGFACE_TOKEN
