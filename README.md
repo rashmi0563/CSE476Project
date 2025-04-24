@@ -69,7 +69,7 @@ accelerate config --config_file accelerate_config.yaml
 Run the `train_sft.sh` script to train the SFT (Supervised Fine-Tuning) model:
 
 ```bash
-bash train_sft.sh
+sbatch train_sft.sh
 ```
 
 - The `train_sft.sh` script uses the Slurm workload manager to execute training tasks.
